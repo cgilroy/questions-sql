@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS question_likes;
 DROP TABLE IF EXISTS replies;
 DROP TABLE IF EXISTS question_follows;
 DROP TABLE IF EXISTS questions;
@@ -85,3 +86,19 @@ VALUES
         "Ya right pal",
         (SELECT id FROM users WHERE fname="Johnny" AND lname = "Toews")
     );
+
+
+CREATE TABLE question_likes (
+    id INTEGER PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    question_id INTEGER NOT NULL
+);
+
+INSERT INTO
+    question_likes (user_id,question_id)
+VALUES
+    (
+        (SELECT id FROM users WHERE fname="Connor" AND lname="McDavid"),
+        (SELECT id FROM questions WHERE title="Playoffs Issue")
+    );
+INSERT INTO question_likes(user_id,question_id) VALUES (2,1)
