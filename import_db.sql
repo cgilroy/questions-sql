@@ -13,7 +13,7 @@ CREATE TABLE users (
 INSERT INTO
     users (fname,lname)
 VALUES
-    ("Connor","McDavid"), ("Leon", "Draisaitl");
+    ("Connor","McDavid"), ("Leon", "Draisaitl"), ("Johnny", "Toews");
 
 CREATE TABLE questions (
     id INTEGER PRIMARY KEY,
@@ -74,4 +74,14 @@ VALUES
         NULL,
         "Lol oil are winning the cup",
         (SELECT id FROM users WHERE fname="Leon" AND lname = "Draisaitl")
+    );
+
+INSERT INTO
+    replies (question_id, parent_id, body, user_id)
+VALUES
+    (
+        (SELECT id FROM questions WHERE title = "Playoffs Issue"),
+        (SELECT id FROM replies WHERE body = "Lol oil are winning the cup"),
+        "Ya right pal",
+        (SELECT id FROM users WHERE fname="Johnny" AND lname = "Toews")
     );
