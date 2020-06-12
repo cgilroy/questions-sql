@@ -87,6 +87,16 @@ VALUES
         (SELECT id FROM users WHERE fname="Johnny" AND lname = "Toews")
     );
 
+INSERT INTO
+    replies (question_id, parent_id, body, user_id)
+VALUES
+    (
+        (SELECT id FROM questions WHERE title = "Playoffs Issue"),
+        (SELECT id FROM replies WHERE body = "Ya right pal"),
+        "We are going to slaughter you has-beens!!!!",
+        (SELECT id FROM users WHERE fname="Leon" AND lname = "Draisaitl")
+    );
+
 
 CREATE TABLE question_likes (
     id INTEGER PRIMARY KEY,
