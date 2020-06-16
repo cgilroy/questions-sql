@@ -16,6 +16,19 @@ class User
         nil
     end
 
+    def self.find_by_user_id(user_id)
+        user_data = QuestionsDatabase.get_first_row(<<-SQL, user_id)
+            SELECT
+                *
+            FROM
+                users
+            WHERE
+                users.id = ?
+        SQL
+        return User.new(user_data) if !user_data.nil?
+        nil
+    end
+
     def initialize(options)
         @id, @fname, @lname = options.values_at('id','fname','lname')
     end
