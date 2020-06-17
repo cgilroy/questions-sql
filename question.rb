@@ -26,6 +26,10 @@ class Question
         return Question.new(data) if !data.nil?
         nil
     end
+    
+    def self.most_followed(n)
+        QuestionFollow.most_followed_questions(n)
+    end
     def initialize(options)
         @id, @title, @body, @user_id = options.values_at('id', 'title', 'body', 'user_id')
     end
@@ -41,4 +45,5 @@ class Question
     def followers
         QuestionFollow.followers_for_question_id(@id)
     end
+
 end
