@@ -28,11 +28,20 @@ CREATE TABLE questions (
 INSERT INTO
     questions (title,body,user_id)
 SELECT
-    "Playoffs Issue", "Why are we letting so many teams in the playoffs?", 1
+    "Playoffs Issue", "Why are we letting so many teams in the playoffs?", users.id
 FROM
     users
 WHERE
     users.fname = "Connor" AND users.lname = "McDavid";
+
+INSERT INTO
+    questions (title,body,user_id)
+SELECT
+    "Hart Question", "Why would anyone not vote for Leon?", users.id
+FROM
+    users
+WHERE
+    users.fname = "Leon" AND users.lname = "Draisaitl";
 
 CREATE TABLE question_follows (
   id INTEGER PRIMARY KEY,
@@ -53,6 +62,10 @@ VALUES
     (
         (SELECT id FROM users WHERE fname="Leon" and lname="Draisaitl"),
         (SELECT id FROM questions WHERE title = "Playoffs Issue")
+    ),
+    (
+        (SELECT id FROM users WHERE fname="Leon" and lname="Draisaitl"),
+        (SELECT id FROM questions WHERE title = "Hart Question")
     );
 
 CREATE TABLE replies (
