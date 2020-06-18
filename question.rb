@@ -1,5 +1,6 @@
 require_relative 'questions_database'
 require_relative 'user'
+require_relative 'question_like'
 
 class Question
     def self.find_by_author_id(id)
@@ -35,5 +36,12 @@ class Question
 
     def replies
         Reply.find_by_question_id(@id)
+    end
+
+    def likers
+        QuestionLike.likers_for_question_id(@id)
+    end
+    def num_likes
+        QuestionLike.num_likes_for_question_id(@id)
     end
 end
