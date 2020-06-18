@@ -2,6 +2,7 @@ require_relative 'questions_database'
 require_relative 'question'
 require_relative 'reply'
 require_relative 'question_follow'
+require_relative 'question_like'
 
 class User
     def self.find_by_name(fname,lname)
@@ -44,5 +45,7 @@ class User
 
     def followed_questions
         QuestionFollow.followed_questions_for_user_id(@id)
+    def liked_questions
+        QuestionLike.liked_questions_for_user_id(@id)
     end
 end
